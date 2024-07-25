@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  database:
+    image: 'postgres:15'
+    env_file:
+      - .env
+    volumes:
+      - database_data:/var/lib/postgresql/data/
+
+  web:
+    build: .
+    volumes:
+      - ./:/rails
+    env_file:
+      - .env
+    links:
+      - database
+    ports:
+      - '3000:3000'
+    command: 'bundle exec rails s -p 3000 -b 0.0.0.0'
+
+  test:
+    build: .
+    volumes:
+      - ./:/rails
+    env_file:
+      - .env
+      - .env.test
+    links:
+      - database
+    stop_signal: SIGKILL
+    command: 'tail -F /dev/null'
+
+volumes:
+  database_data:
