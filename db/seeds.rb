@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+{
+  "sample-app" => "This is a sample application",
+  "web-app" => "Frontend production application",
+  "staging-web-app" => "Frontend application on staging environment",
+  "api" => "API production backend",
+  "staging-api" => "API backend on staging environment",
+}.each do |app_name, app_description|
+  app = Application.find_or_create_by!(name: app_name)
+  app.update_attribute!(:description, app_description)
+end
