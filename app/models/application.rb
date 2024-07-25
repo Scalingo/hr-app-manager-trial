@@ -10,4 +10,7 @@
 #  updated_at  :datetime         not null
 #
 class Application < ApplicationRecord
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :name, length: { minimum: 3 }
 end

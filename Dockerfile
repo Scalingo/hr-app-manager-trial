@@ -20,16 +20,14 @@ RUN apt-get update -qq && \
       pkg-config \
       libpq-dev \
       nodejs \
-      npm \
-      yarn && \
+      npm && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile && \
-    bundle exec vite install
+RUN bundle config set --local path "/rails/vendor/bundle" && \
+    bundle install && \
+    bundle exec bootsnap precompile --gemfile
 
 # Copy application code
 COPY . .

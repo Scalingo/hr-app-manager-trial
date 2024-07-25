@@ -1,0 +1,33 @@
+<ul>
+<% @applications.each do |application| %>
+  <li><%= link_to application.name, application %></li>
+<% end %>
+<% if @applications.empty? %>
+  <li>No applications yet</li>
+<% end %>
+</ul>
+
+<h2>New Application</h2>
+
+<%= form_with model: Application.new do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+
+    <% @application && @application.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+    <% @application && @application.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
