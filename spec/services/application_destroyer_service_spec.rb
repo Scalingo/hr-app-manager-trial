@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationDestroyer, type: :service do
+RSpec.describe ApplicationDestroyerService, type: :service do
   context '#call' do
     subject(:destroy_application) { described_class.new(application).call }
 

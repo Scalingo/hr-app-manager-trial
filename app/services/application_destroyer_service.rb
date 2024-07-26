@@ -1,4 +1,4 @@
-class ApplicationDestroyer
+class ApplicationDestroyerService
   attr_reader :application
 
   def initialize(application)

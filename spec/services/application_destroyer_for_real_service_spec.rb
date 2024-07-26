@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationDestroyerForReal, type: :service do
+RSpec.describe ApplicationDestroyerForRealService, type: :service do
   context '#call' do
     subject(:destroy_application_for_real) { described_class.new(application).call }
 
@@ -8,7 +8,7 @@ RSpec.describe ApplicationDestroyerForReal, type: :service do
 
     context 'when application has been soft deleted' do
       before do
-        ApplicationDestroyer.new(application).call
+        ApplicationDestroyerService.new(application).call
       end
 
       it 'destroys the application for real' do
