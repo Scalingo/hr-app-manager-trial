@@ -34,9 +34,7 @@ class ApplicationsController < BaseController
 
   def destroy
     application = Application.find(params[:id])
-    application.deleted_at = Time.now
-    application.name = "#{application.name} (deleted at #{application.deleted_at})"
-    application.save!
+    ApplicationDestroyer.new(application).call
 
     redirect_to applications_path
   end
