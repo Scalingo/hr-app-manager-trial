@@ -1,28 +1,47 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Running instructions
 
-Things you may want to cover:
+To run the project, you'll need a running PostgreSQL instance,
+a `DATABASE_URL` environment variable, and ruby v3.3.4.
 
-* Ruby version
+### Using docker compose
 
-* System dependencies
+A `docker-compose.yml` file exists for convenience. It starts a
+PostgreSQL service in addition of the application.
 
-* Configuration
+Before the first launch, prepare a `.env` file with the following content:
 
-* Database creation
+```bash
+POSTGRES_PASSWORD=<a_random_password>
+DATABASE_URL=postgres://postgres:<a_random_password>@database:5432/app_manager_trial_development
+RAILS_ENV=development
+```
 
-* Database initialization
+And a `.env.test` one:
 
-* How to run the test suite
+```bash
+POSTGRES_PASSWORD=<a_random_password>
+DATABASE_URL=postgres://postgres:<a_random_password>@database:5432/app_manager_trial_test
+RAILS_ENV=test
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+You'll need also to build the image and setup the app:
 
-* Deployment instructions
+```shell
+docker compose run build
+docker compose run --rm web bundle install
+docker compose run --rm web bundle exec rails db:prepare
+```
 
-* ...
+Then, to run the app:
 
-    docker compose run build
-    docker compose up
-    docker compose run --rm test bundle exec rspec
+```shell
+docker compose up
+```
+
+To execute the tests, you can use the following:
+
+```shell
+docker compose run --rm test bundle exec rspec
+```
