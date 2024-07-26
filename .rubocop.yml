@@ -1,0 +1,17 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - bin/**/*
+    - Gemfile
+    - vendor/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*_spec.rb'

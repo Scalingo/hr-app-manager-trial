@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Application search', type: :request do
@@ -13,7 +15,7 @@ RSpec.describe 'Application search', type: :request do
     expect(response.body).not_to include('useless-app')
   end
 
-  it '[bonus] search is aware of English language' do
+  it '[bonus] is aware of English language' do
     Application.create(name: 'cities-manager', description: 'This is a backend API')
     Application.create(name: 'web-app', description: 'The front of cities manager')
     Application.create(name: 'working-api', description: 'This is an API')

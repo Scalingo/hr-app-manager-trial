@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ApplicationCleanerService, type: :service do
@@ -5,7 +7,7 @@ RSpec.describe ApplicationCleanerService, type: :service do
     subject(:clean_applications) { described_class.new(application_queue).call }
 
     let(:application_queue) { Queue.new }
-    let(:application) { Application.create!(name: 'sample-app', deleted_at: Time.now) }
+    let(:application) { Application.create!(name: 'sample-app', deleted_at: Time.zone.now) }
 
     before do
       application_queue << application

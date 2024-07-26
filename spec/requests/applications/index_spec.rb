@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Application index', type: :request do
   it 'returns living applications only' do
     Application.create(name: 'sample-app')
     Application.create(name: 'web-app')
-    Application.create(name: 'deleted-app', deleted_at: Time.now)
+    Application.create(name: 'deleted-app', deleted_at: Time.zone.now)
 
     get '/applications.json'
 

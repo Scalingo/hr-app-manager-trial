@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 class ApplicationsController < BaseController
   def index
     @applications = Application.where(deleted_at: nil)
   end
 
   def show
+    @application = current_application
+  end
+
+  def edit
     @application = current_application
   end
 
@@ -18,10 +24,6 @@ class ApplicationsController < BaseController
     end
   end
 
-  def edit
-    @application = current_application
-  end
-
   def update
     @application = current_application
 
@@ -34,7 +36,7 @@ class ApplicationsController < BaseController
 
   def destroy
     application = Application.find(params[:id])
-    ApplicationDestroyer.new(application).call
+    ApplicationDestroyerService.new(application).call
 
     redirect_to applications_path
   end
