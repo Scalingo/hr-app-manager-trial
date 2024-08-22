@@ -29,7 +29,7 @@ RAILS_ENV=test
 You'll need also to build the image and setup the app:
 
 ```shell
-docker compose run build
+docker compose build
 docker compose run --rm web bundle install
 docker compose run --rm web bundle exec rails db:prepare
 ```
