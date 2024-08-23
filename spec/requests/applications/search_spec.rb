@@ -10,6 +10,7 @@ RSpec.describe 'Application search', type: :request do
 
     get '/applications/search.json', params: { q: 'Sample' }
 
+    expect(response).to have_http_status(:ok)
     expect(response.body).to include('sample-app')
     expect(response.body).to include('web-app')
     expect(response.body).not_to include('useless-app')
@@ -23,6 +24,7 @@ RSpec.describe 'Application search', type: :request do
 
     get '/applications/search.json', params: { q: 'City' }
 
+    expect(response).to have_http_status(:ok)
     expect(response.body).to include('cities-manager')
     expect(response.body).to include('web-app')
     expect(response.body).not_to include('working-api')
@@ -30,6 +32,7 @@ RSpec.describe 'Application search', type: :request do
 
     get '/applications/search.json', params: { q: 'worked' }
 
+    expect(response).to have_http_status(:ok)
     expect(response.body).to include('working-api')
     expect(response.body).to include('health-checker')
     expect(response.body).not_to include('cities-manager')
