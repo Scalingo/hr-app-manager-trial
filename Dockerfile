@@ -29,6 +29,8 @@ RUN bundle config set --local path "/rails/vendor/bundle" && \
     bundle install && \
     bundle exec bootsnap precompile --gemfile
 
+RUN gem install foreman
+
 # Copy application code
 COPY . .
 

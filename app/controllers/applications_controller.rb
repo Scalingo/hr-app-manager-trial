@@ -17,10 +17,18 @@ class ApplicationsController < BaseController
     @application = Application.new(application_params)
 
     if @application.save
-      redirect_to applications_path
+      respond_to do |format|
+        format.html { redirect_to applications_path }
+        format.json { render :show, status: :ok }
+      end
     else
-      index
-      render :index
+      respond_to do |format|
+        format.html do
+          index
+          render :index
+        end
+        format.json { render json: { errors: @application.errors }, status: :unprocessable_content }
+      end
     end
   end
 
@@ -28,9 +36,15 @@ class ApplicationsController < BaseController
     @application = current_application
 
     if @application.update(application_params)
-      redirect_to @application
+      respond_to do |format|
+        format.html { redirect_to @application }
+        format.json { render :show, status: :ok }
+      end
     else
-      render :edit, status: :unprocessable_content
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: { errors: @application.errors }, status: :unprocessable_content }
+      end
     end
   end
 
@@ -38,7 +52,10 @@ class ApplicationsController < BaseController
     application = Application.find(params[:id])
     ApplicationDestroyerService.new(application).call
 
-    redirect_to applications_path
+    respond_to do |format|
+      format.html { redirect_to applications_path }
+      format.json { render json: {}, status: :ok }
+    end
   end
 
   private

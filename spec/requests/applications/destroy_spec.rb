@@ -9,7 +9,7 @@ RSpec.describe 'Application destroy', type: :request do
     delete "/applications/#{application.id}.json"
     application.reload
 
-    expect(response).to redirect_to(applications_path)
+    expect(response).to have_http_status(:ok)
     expect(application.deleted_at).not_to be_nil
   end
 end
