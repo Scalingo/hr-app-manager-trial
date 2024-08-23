@@ -19,7 +19,7 @@ class ApplicationsController < BaseController
     if @application.save
       respond_to do |format|
         format.html { redirect_to applications_path }
-        format.json { render json: @application, status: :ok }
+        format.json { render :show, status: :ok }
       end
     else
       respond_to do |format|
@@ -38,7 +38,7 @@ class ApplicationsController < BaseController
     if @application.update(application_params)
       respond_to do |format|
         format.html { redirect_to @application }
-        format.json { render json: @application }
+        format.json { render :show, status: :ok }
       end
     else
       respond_to do |format|
