@@ -5,9 +5,9 @@ defineProps({
 </script>
 
 <template>
-  <ul v-if="error.errors">
+  <ul class="my-6 text-red-800" v-if="error.errors">
     <li v-for="(errors, attributeName) in error.errors">
-      {{ attributeName }}: {{ errors.join(",") }}
+      <strong>{{ attributeName }}</strong>: {{ errors.join(",") }}
     </li>
   </ul>
 </template>

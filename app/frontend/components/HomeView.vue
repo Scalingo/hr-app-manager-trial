@@ -46,25 +46,25 @@ export default {
 </script>
 
 <template>
-  <h2>Applications</h2>
-  <ul>
+  <h2 class="text-3xl my-6">Applications</h2>
+  <ul class="my-6">
     <li v-for="app in apps" :key="app.id">
-      <router-link :to="{ name: 'Application', params: { id: app.id } }">
+      <router-link class="text-sky-600 hover:text-sky-900 hover:underline" :to="{ name: 'Application', params: { id: app.id } }">
         {{ app.name }}
       </router-link>
     </li>
   </ul>
-  <h3>New application</h3>
+  <h3 class="text-2xl my-6">New application</h3>
   <form @submit.prevent="onSubmitNewApp">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model="newApp.name" />
+    <div class="my-2">
+      <label for="name" class="inline-block w-32">Name</label>
+      <input type="text" class="w-96" id="name" v-model="newApp.name" />
     </div>
-    <div>
-      <label for="description">Description</label>
-      <textarea id="description" v-model="newApp.description"></textarea>
+    <div class="my-2">
+      <label for="description" class="inline-block w-32 align-top">Description</label>
+      <textarea id="description" class="w-96" v-model="newApp.description"></textarea>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" class="px-4 py-2 border-solid border-2 rounded-md shadow-md border-sky-600 bg-sky-100 hover:border-sky-800 hover:bg-sky-200 active:bg-sky-50 active:border-sky-400 active:shadow-none active:shadow-inner">Save</button>
   </form>
   <ErrorMessage :error="error"></ErrorMessage>
 </template>

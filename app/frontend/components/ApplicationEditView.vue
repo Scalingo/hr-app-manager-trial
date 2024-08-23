@@ -50,17 +50,18 @@ export default {
 </script>
 
 <template>
+  <h2 class="text-3xl my-6">Edition of {{ app.name }}</h2>
   <form @submit.prevent="onSubmit">
-    <div>
-      <label for="name">Name</label>
+    <div class="my-2">
+      <label for="name" class="inline-block w-32">Name</label>
       <input type="text" id="name" v-model="app.name" />
     </div>
-    <div>
-      <label for="description">Description</label>
+    <div class="my-2">
+      <label for="description" class="inline-block w-32 align-top">Description</label>
       <textarea id="description" v-model="app.description"></textarea>
     </div>
-    <button type="submit">Save</button>
-    <p><router-link :to="{ name: 'Application', params: { id: app.id } }">Cancel</router-link></p>
+    <button type="submit"  class="px-4 py-2 mx-2 border-solid border-2 rounded-md shadow-md border-sky-600 bg-sky-100 hover:border-sky-800 hover:bg-sky-200 active:bg-sky-50 active:border-sky-400 active:shadow-none active:shadow-inner">Save</button>
+    <router-link :to="{ name: 'Application', params: { id: app.id } }" class="text-sky-600 hover:text-sky-900 hover:underline">Cancel</router-link>
   </form>
   <ErrorMessage :error="error"></ErrorMessage>
 </template>

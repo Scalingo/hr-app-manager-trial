@@ -49,10 +49,12 @@ export default {
 </script>
 
 <template>
-  <h2>{{ app.name }}</h2>
-  <p>{{ app.description }}</p>
-  <p><router-link :to="{ name: 'ApplicationEdit', params: { id: app.id } }">Edit</router-link></p>
-  <p><button @click="onDestroy">Destroy</button></p>
+  <h2 class="text-3xl my-6">{{ app.name }}</h2>
+  <p class="my-2">{{ app.description }}</p>
+  <div class="my-2">
+    <router-link class="inline-block m-2 text-sky-600 hover:text-sky-900 hover:underline" to="/">Back</router-link>
+    <router-link class="inline-block m-2 text-sky-600 hover:text-sky-900 hover:underline" :to="{ name: 'ApplicationEdit', params: { id: app.id } }">Edit</router-link>
+    <button class="m-2 px-4 py-2 border-solid border-2 rounded-md shadow-md border-red-600 bg-red-100 hover:border-red-800 hover:bg-red-200 active:bg-red-50 active:border-red-400 active:shadow-none active:shadow-inner" @click="onDestroy">Destroy</button>
+  </div>
   <ErrorMessage :error="error"></ErrorMessage>
-  <p><router-link to="/">back</router-link></p>
 </template>
