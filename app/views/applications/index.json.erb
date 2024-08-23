@@ -1,6 +1,7 @@
 [
 <% @applications.each_with_index do |application, index| %>
   {
+    "id": <%= application.id %>,
     "name": "<%= application.name %>",
     "description": "<%= application.description %>"
   }<% if index < @applications.length - 1 %>, <% end %>
